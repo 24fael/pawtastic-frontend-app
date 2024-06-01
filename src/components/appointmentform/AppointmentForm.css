@@ -1,0 +1,23 @@
+#appointment-form-image{
+    background-image: url('../../assets/images/appointmentpuppy.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+#appointment-form-segment{
+    background-color: #F7ECEB;
+}
+
+#services-list{
+    line-height: 60px;
+}
+
+.form-button-active, .form-button:hover{
+    background-color: #EBD0CE !important;
+}
+
+.form-border, input, textarea{
+    border-color: #EBD0CE !important;
+}
