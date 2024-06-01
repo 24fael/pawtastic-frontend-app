@@ -16,7 +16,7 @@ export default function Banner(){
                         <a href="#appointment-form" className='text-decoration-none text-white fw-light'>Schedule a visit</a>
                     </div>
                 </div>
-                <div className='row mt-5 mt-md-3'>
+                <div className='row mt-5 mt-md-3' data-aos="fade-left">
                     <div className="col-12 col-md-4 offset-md-8">
                         <h1 className='fw-bold text-white'>We care for your furry little loved ones while</h1>
                         <a href="#appointment-form" className='text-decoration-none'>

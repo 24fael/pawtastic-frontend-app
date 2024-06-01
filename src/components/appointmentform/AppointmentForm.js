@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import moment from 'moment'
+import LoadingSpinner from '../globals/LoadingSpinner'
 
 export default function AppointmentForm(){
+    const [isLoading, setIsLoading] = useState(false)
+
     const [frequency, setFrequency] = useState("")
     const [startDate, setStartDate] = useState("")
     const [days, setDays] = useState([])
@@ -49,6 +52,8 @@ export default function AppointmentForm(){
     }
 
     function handleSubmit(){
+        setIsLoading(true)
+
         // Validates all required fields
         if( 
             frequency === "" || frequency === null ||
@@ -64,6 +69,8 @@ export default function AppointmentForm(){
                 toast: true,
                 showConfirmButton: false
             })
+
+            setIsLoading(false)
         } else {
             // If everything is valid, send a request to server containing data from the form
             axios.post('http://127.0.0.1:8000/api/appointments', {
@@ -86,6 +93,8 @@ export default function AppointmentForm(){
                 
                 // Clear all fields upon successful submission
                 clearAppointmentForm()
+
+                setIsLoading(false)
             }).catch(error => {
                 Swal.fire({
                     title: 'Server-provided Error',
@@ -96,6 +105,8 @@ export default function AppointmentForm(){
                     toast: true,
                     showConfirmButton: false
                 })
+
+                setIsLoading(false)
             })
         }
     }
@@ -111,7 +122,7 @@ export default function AppointmentForm(){
                     <a href="#banner" className='text-decoration-none'>
                         <h3 className='my-5 text-white'><img src={SecondaryLogo} alt="Secondary Logo" className='img-fluid'/> PAWTASTIC</h3>
                     </a>
-                    <div className='text-white'>
+                    <div className='text-white' data-aos="fade-up">
                         <h2 className='fw-bold'>All services include:</h2>
                         <ul className='w-50 mx-auto' id='services-list'>
                             <li>A photo update for you along</li>
@@ -122,7 +133,7 @@ export default function AppointmentForm(){
                 </div>
                 <div className="col-12 col-md-7 p-5" id="appointment-form-segment">
                     <h1 className='fw-bold primary-text w-75 mx-auto'>We'll take your dog for a walk. Just tell us when!</h1>
-                    <div class="row g-3 w-75 mx-auto mt-4">
+                    <div class="row g-3 w-75 mx-auto mt-4" data-aos="fade-up">
                         <div class="col-12 col-md-6 my-auto">
                             <label for="inputEmail4" class="form-label">Frequency</label>
                             <div className="d-flex border form-border rounded p-1">
@@ -162,8 +173,12 @@ export default function AppointmentForm(){
                             </textarea>
                         </div>
                         <div class="col-12 text-center">
-                            <button onClick={() => handleSubmit()} className='mt-5 btn btn-dark rounded-5 py-2 px-5 text-white schedule-button-secondary'>
-                                Schedule Service
+                            <button onClick={() => handleSubmit()} className={`mt-5 btn btn-dark rounded-5 py-2 px-5 text-white schedule-button-secondary ${isLoading ? 'disabled' : ''}`}>
+                                {isLoading ?
+                                    <LoadingSpinner/>
+                                    :
+                                    "Schedule Service"
+                                }
                             </button>
                         </div>
                     </div>
