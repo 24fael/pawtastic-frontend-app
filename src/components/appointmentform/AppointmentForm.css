@@ -21,3 +21,7 @@
 .form-border, input, textarea{
     border-color: #EBD0CE !important;
 }
+
+li{
+    text-justify: auto;
+}

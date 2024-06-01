@@ -15,15 +15,15 @@ label{
   color: #545871;
 }
 
-#schedule-button-secondary{
+.schedule-button-secondary{
   background-color: #545871;
   border: none
 }
 
-#schedule-button-secondary:hover{
+.schedule-button-secondary:hover{
   background-color: #474b63;
 }
 
-#schedule-button-primary{
+.schedule-button-primary{
   color: #545871;
 }

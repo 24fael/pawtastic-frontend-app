@@ -4,8 +4,10 @@ import AppointmentForm from './components/appointmentform/AppointmentForm';
 function App() {
   return (
     <>
-      <main>
+      <header>
         <Banner/>
+      </header>
+      <main>
         <ServiceDetails/>
         <AppointmentForm/>
       </main>
